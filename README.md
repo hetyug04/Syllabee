@@ -2,28 +2,32 @@
 
 Syllabus Bot is a sophisticated Discord bot designed to help students and educators manage and understand course syllabi effortlessly. By leveraging the power of Large Language Models (LLMs) and semantic search, the bot can parse PDF syllabi, answer questions in natural language, and provide key information on demand.
 
-![Syllabus Bot Demo](httpshttps://i.imgur.com/your-demo-link-here.gif)
+![Syllabus Bot Demo](SyllabeeDemoGif.gif)
 *(Placeholder for a GIF demonstrating the bot's features)*
 
 ---
 
-## For Users: A Smarter Way to Manage Your Courses
+## 🤖 For Students: Ask Your Syllabus Anything
 
-Tired of digging through PDFs to find due dates, grading policies, or professor's office hours? Syllabus Bot is here to help.
+Tired of hunting through PDFs for "when’s the midterm?" or "how much is the final worth?"  
+syllabee makes your course documents interactive and helpful.
 
-### Key Features
-
-*   **Upload & Forget:** Simply upload your syllabus in PDF format, and the bot will automatically process and store it.
-*   **Ask Anything:** Ask questions in plain English, like "What's the policy on late assignments?" or "When is the midterm exam?".
-*   **Instant Answers:** Get immediate, accurate answers based on the content of your syllabi.
-*   **Course Management:** List all your subscribed courses, and easily subscribe to or unsubscribe from syllabi in the system.
-*   **Multi-Syllabus Support:** The bot can manage multiple syllabi at once and is smart enough to figure out which one you're asking about.
+### ✨ Key Features
+- 📎 **Upload & Forget** — Drop your PDF, and the bot handles parsing & storage.
+- 🧠 **Ask Anything** — Use natural language: *"What’s the late policy?"*
+- ⚡ **Fast Answers** — Get immediate, LLM-powered responses from your syllabus.
+- 📚 **Course Management** — View and manage your syllabi via simple commands.
+- 🔀 **Multi-Syllabus Routing** — It auto-detects which course you’re referring to.
 
 ---
 
-## For Recruiters: A Technical Deep Dive
+## 🧑‍💻 For Recruiters: Tech Overview
 
-This project is a demonstration of a modern, AI-powered application with a robust and scalable architecture.
+This project demonstrates a production-ready AI system that integrates:
+- **Semantic retrieval (pgvector)**  
+- **LLM pipelines (LangGraph)**  
+- **Multimodal ingestion (OCR + NLP)**  
+- **Modern DevOps practices (Docker, FastAPI, async Discord bot)**
 
 ### System Architecture
 
