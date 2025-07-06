@@ -1,6 +1,6 @@
-# Syllabus Bot: Your AI-Powered Course Assistant
+# Syllabee: Your AI-Powered Course Assistant
 
-Syllabus Bot is a sophisticated Discord bot designed to help students and educators manage and understand course syllabi effortlessly. By leveraging the power of Large Language Models (LLMs) and semantic search, the bot can parse PDF syllabi, answer questions in natural language, and provide key information on demand.
+Syllabee is a sophisticated Discord bot designed to help students and educators manage and understand course syllabi effortlessly. By leveraging the power of Large Language Models (LLMs) and semantic search, the bot can parse PDF syllabi, answer questions in natural language, and provide key information on demand.
 
 ![Syllabus Bot Demo](SyllabeeDemoGif.gif)
 *(Placeholder for a GIF demonstrating the bot's features)*
