@@ -55,6 +55,13 @@ jobs:
       - name: Create badges directory
         run: mkdir -p badges
 
+      - name: Publish badge branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: coverage-badge
+          folder: badges
+        
+
       # 1️⃣  Generate the SVG badge where you want it
       - name: Generate coverage badge
         uses: tj-actions/coverage-badge-py@v2
