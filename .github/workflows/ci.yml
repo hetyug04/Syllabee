@@ -45,6 +45,7 @@ jobs:
         pip install pytest pytest-cov
     - name: Generate coverage report
       run: |
+        export PYTHONPATH=$PYTHONPATH:.
         pytest --cov=./ --cov-report=xml
     - name: Generate coverage badge
       uses: tj-actions/coverage-badge-py@v2
