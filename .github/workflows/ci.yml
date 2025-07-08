@@ -34,43 +34,34 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Install deps
+      - name: Install deps (test + coverage)
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install -e .
           pip install pytest pytest-cov
 
-      - name: Run tests & create .coverage data file
+      - name: Run tests & generate coverage data
         env:
           PYTHONPATH: ${{ github.workspace }}
         run: |
-          pytest --cov=./ --cov-report=term --cov-report=xml
+          pytest --cov=./ --cov-report=term --cov-report=xml   # .coverage + XML
 
-      - name: Create badges directory
+      - name: Ensure badges directory exists
         run: mkdir -p badges
 
-      - name: Publish badge branch
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: coverage-badge
-          folder: badges
-        
-
-      # 1️⃣  Generate the SVG badge where you want it
-      - name: Generate coverage badge
+      - name: Generate SVG badge
         uses: tj-actions/coverage-badge-py@v2
         with:
-          output: badges/coverage.svg 
+          output: badges/coverage.svg      # → ./badges/coverage.svg
           overwrite: true
 
-      # 2️⃣  Commit the badge that was just written/updated
-      - name: Commit coverage badge
+      - name: Commit updated badge
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "docs: update coverage badge"
