@@ -1,4 +1,9 @@
 # Syllabee: Your AI-Powered Course Assistant
+# Syllabus Bot: Your AI-Powered Course Assistant
+
+<!-- Note: Please replace <OWNER> and <REPO> with your GitHub username and repository name. -->
+[![CI](https://github.com/<OWNER>/<REPO>/actions/workflows/ci.yml/badge.svg)](https://github.com/<OWNER>/<REPO>/actions/workflows/ci.yml)
+[![Coverage](coverage.svg)](https://github.com/<OWNER>/<REPO>/actions/workflows/ci.yml)
 
 Syllabee is a sophisticated Discord bot designed to help students and educators manage and understand course syllabi effortlessly. By leveraging the power of Large Language Models (LLMs) and semantic search, the bot can parse PDF syllabi, answer questions in natural language, and provide key information on demand.
 
@@ -121,7 +126,6 @@ The bot's intelligence is powered by a sophisticated AI pipeline built with **La
 
 ## Future Improvements
 
-*   **Add a comprehensive test suite:** Implement unit and integration tests to ensure code quality and reliability.
 *   **Proactive Notifications:** Automatically send reminders for upcoming due dates and exams.
 *   **Web Interface:** Create a web-based dashboard for managing syllabi and viewing course information.
 *   **Support for More File Types:** Add support for `.docx` and other common document formats.
