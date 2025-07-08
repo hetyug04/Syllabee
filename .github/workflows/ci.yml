@@ -51,6 +51,7 @@ jobs:
       uses: jpb06/coverage-badges-action@latest
       with:
         branches: main
+        coverage-summary-path: ./coverage.json
     - name: Commit coverage badges
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
