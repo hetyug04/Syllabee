@@ -18,12 +18,14 @@ jobs:
         python-version: "3.11"
     - name: Install dependencies
       run: |
+        export PYTHONPATH=$PYTHONPATH:.
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install -e .
         pip install pytest
     - name: Test with pytest
       run: |
+        export PYTHONPATH=$PYTHONPATH:.
         pytest
 
   coverage:
