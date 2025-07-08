@@ -50,8 +50,8 @@ jobs:
     - name: Verify coverage file
       run: |
         ls -lR
-        if [ ! -f coverage.json ]; then
-          echo "coverage.json not found!"
+        if [ ! -f coverage-summary.json ]; then
+          echo "coverage-summary.json not found!"
           exit 1
         fi
     - name: Generate coverage badges
