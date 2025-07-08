@@ -50,7 +50,10 @@ jobs:
         env:
           PYTHONPATH: ${{ github.workspace }}
         run: |
-          pytest --cov=./ --cov-report=term --cov-report=xml      # xml is optional; .coverage is enough
+          pytest --cov=./ --cov-report=term --cov-report=xml
+
+      - name: Create badges directory
+        run: mkdir -p badges
 
       # 1️⃣  Generate the SVG badge where you want it
       - name: Generate coverage badge
