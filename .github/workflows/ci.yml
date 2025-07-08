@@ -46,14 +46,13 @@ jobs:
     - name: Generate coverage report
       run: |
         export PYTHONPATH=$PYTHONPATH:.
-        pytest --cov=./ --cov-report=xml
-    - name: Generate coverage badge
-      uses: tj-actions/coverage-badge-py@v2
+        pytest --cov=./ --cov-report=json
+    - name: Generate coverage badges
+      uses: jpb06/coverage-badges-action@latest
       with:
-        output: coverage.svg
-        coverage_file: coverage.xml
-    - name: Commit coverage badge
+        branches: main
+    - name: Commit coverage badges
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
-        commit_message: "docs: update coverage badge"
-        file_pattern: coverage.svg
+        commit_message: "docs: update coverage badges"
+        file_pattern: "badges/*.svg"
