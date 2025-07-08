@@ -56,7 +56,7 @@ jobs:
       - name: Generate coverage badge
         uses: tj-actions/coverage-badge-py@v2
         with:
-          output: badges/coverage.svg       # <─ folder + file name you’ll reference in README
+          output: badges/coverage.svg 
           overwrite: true
 
       # 2️⃣  Commit the badge that was just written/updated
