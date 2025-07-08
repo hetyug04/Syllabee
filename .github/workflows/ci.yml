@@ -46,14 +46,22 @@ jobs:
           pip install -e .
           pip install pytest pytest-cov
 
-      - name: Run tests & generate coverage report
+      - name: Run tests & create .coverage data file
+        env:
+          PYTHONPATH: ${{ github.workspace }}
         run: |
-          export PYTHONPATH=$PYTHONPATH:.
-          pytest --cov=./ --cov-report=term --cov-report=xml  # ← produce coverage.xml
+          pytest --cov=./ --cov-report=term --cov-report=xml      # xml is optional; .coverage is enough
 
-      # This single step generates badges **and** commits them
-      - name: Create / commit coverage badge
+      # 1️⃣  Generate the SVG badge where you want it
+      - name: Generate coverage badge
         uses: tj-actions/coverage-badge-py@v2
         with:
-          badge_path: badges/coverage.svg          # folder/name you want
+          output: badges/coverage.svg       # <─ folder + file name you’ll reference in README
+          overwrite: true
+
+      # 2️⃣  Commit the badge that was just written/updated
+      - name: Commit coverage badge
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
           commit_message: "docs: update coverage badge"
+          file_pattern: "badges/coverage.svg"
