@@ -47,6 +47,13 @@ jobs:
       run: |
         export PYTHONPATH=$PYTHONPATH:.
         pytest --cov=./ --cov-report=json
+    - name: Verify coverage file
+      run: |
+        ls -lR
+        if [ ! -f coverage.json ]; then
+          echo "coverage.json not found!"
+          exit 1
+        fi
     - name: Generate coverage badges
       uses: jpb06/coverage-badges-action@latest
       with:
