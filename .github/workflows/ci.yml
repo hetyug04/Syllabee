@@ -1,71 +1,80 @@
-# .github/workflows/ci.yml
 name: CI
 
+# ---------------------------------------------------------------------------
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
+# ---------------------------------------------------------------------------
+permissions:
+  contents: write          # ← allow the workflow to push commits
+
 jobs:
+# ───────────────────────────── tests ─────────────────────────────
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python 3.11
-      uses: actions/setup-python@v5
-      with:
-        python-version: "3.11"
-    - name: Install dependencies
-      run: |
-        export PYTHONPATH=$PYTHONPATH:.
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install -e .
-        pip install pytest
-    - name: Test with pytest
-      run: |
-        export PYTHONPATH=$PYTHONPATH:.
-        pytest
-
-  coverage:
-    permissions:
-      contents: write
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python 3.11
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Install deps (test + coverage)
+      - name: Install deps
         run: |
-          python -m pip install --upgrade pip
+          python -m pip install -U pip
+          pip install -r requirements.txt
+          pip install -e .
+          pip install pytest
+
+      - name: Run unit tests
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+        run: pytest
+
+# ─────────────────────────── coverage + badge ───────────────────────────
+  coverage:
+    runs-on: ubuntu-latest
+    needs: test
+
+    # Prevent two runs racing on the same branch
+    concurrency:
+      group: coverage-badge-main
+      cancel-in-progress: true     # kill older runs
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps (coverage)
+        run: |
+          python -m pip install -U pip
           pip install -r requirements.txt
           pip install -e .
           pip install pytest pytest-cov
 
-      - name: Run tests & generate coverage data
+      - name: Run tests & create coverage
         env:
           PYTHONPATH: ${{ github.workspace }}
         run: |
-          pytest --cov=./ --cov-report=term --cov-report=xml   # .coverage + XML
-
-      - name: Ensure badges directory exists
-        run: mkdir -p badges
+          pytest --cov=./ --cov-report=term --cov-report=xml  # writes .coverage + coverage.xml
 
       - name: Generate SVG badge
-        uses: tj-actions/coverage-badge-py@v2
+        run: mkdir -p badges
+      - uses: tj-actions/coverage-badge-py@v2
         with:
-          output: badges/coverage.svg      # → ./badges/coverage.svg
-          overwrite: true
+          output: badges/coverage.svg
+          overwrite: true           # always refresh
 
       - name: Commit updated badge
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           commit_message: "docs: update coverage badge"
           file_pattern: "badges/coverage.svg"
