@@ -2,7 +2,8 @@
 
 <!-- Note: Please replace <OWNER> and <REPO> with your GitHub username and repository name. -->
 [![CI](https://github.com/hetyug04/syllabee/actions/workflows/ci.yml/badge.svg)](https://github.com/hetyug04/syllabee/actions/workflows/ci.yml)
-[![Coverage](./badges/coverage.svg)](https://github.com/hetyug04/syllabee/actions/workflows/ci.yml)
+[![Coverage](https://raw.githubusercontent.com/hetyug04/syllabee/main/badges/coverage.svg)](https://github.com/hetyug04/syllabee/actions/workflows/ci.yml)
+
 
 
 Syllabee is a sophisticated Discord bot designed to help students and educators manage and understand course syllabi effortlessly. By leveraging the power of Large Language Models (LLMs) and semantic search, the bot can parse PDF syllabi, answer questions in natural language, and provide key information on demand.
